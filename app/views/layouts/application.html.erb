@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Website</title>
+    <title><%= yield(:title) %> | Site Name</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
+  <body class="<%= controller_name %>">
+    <%= render partial:"layouts/header"%>
     <%= yield %>
+    <%= render partial:"layouts/footer"%>
   </body>
 </html>
