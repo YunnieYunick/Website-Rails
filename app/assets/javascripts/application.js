@@ -16,3 +16,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function () {
+  $('.btn-back').click(function(){
+    window.history.back(-1);
+    return false;
+  });
+});
