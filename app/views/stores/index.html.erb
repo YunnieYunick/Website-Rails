@@ -1,0 +1,18 @@
+<% provide :title ,"Stores" %>
+<% provide :stores_active ,"active" %>
+
+<div class="container">
+  <div class="h5">Stores <%= link_to '新規作成', new_store_path, class: "btn btn-primary" %></div>
+  <table class="table">
+    <tr>
+      <th>店名</th>
+      <th></th>
+    </tr>
+    <% @stores.each do |store| %>
+      <tr>
+        <td><%= link_to store.name, store %></td>
+        <td><%= link_to '編集', edit_store_path(store), class: "btn btn-primary" %> <%= link_to '削除', store, method: :delete, data: { confirm: '削除してもよろしいですか？' }, class: "btn btn-danger" %></td>
+      </tr>
+    <% end %>
+  </table> 
+</div>

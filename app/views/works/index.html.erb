@@ -1,0 +1,39 @@
+<% provide :title ,"Works" %>
+<% provide :works_active ,"active" %>
+
+<div class="container">
+  <div class="h5">Works <%= current_staff_user.username %></div>
+  <div class="container-fluid text-center">
+    <div class="row no-gutters well controls">
+      <span class="col text-left">
+        <%= link_to '<<' , works_path(date: @date - 1.month), class: "btn btn-secondary" %>
+        <%= link_to '>>' , works_path(date: @date + 1.month), class: "btn btn-secondary" %>
+      </span>
+      <div class="h3 col">
+        <%= "#{@date.strftime("%b")} #{@date.year}" %>
+      </div>
+      <span class="col text-right">
+        <%= link_to 'today' , works_path, class: "btn btn-primary" %>
+      </span>
+    </div>
+  </div>
+  <div class="calendar">
+    <%= calendar do |date| %>
+      <span class="date"><%= date.day %></span>
+      <% if @exist_event_date = @events_by_date[date.strftime('%x')] %>
+        <% @exist_event_date.each do |job| %>
+          <% if job.user == current_staff_user %>
+            <%= link_to(job.work, class: "job user") do %>
+              <%= render 'job', job: job %>
+            <% end %>
+          <% else %>
+            <span class="job">
+              <%= render 'job', job: job %>
+            </span>
+          <% end %>
+        <% end %>
+      <% end %>
+      <%= link_to '', new_work_path(date_y: date.strftime('%Y'), date_m: date.strftime('%m'), date_d: date.strftime('%d')), class: "new" %>
+    <% end %>
+  </div>
+</div>

@@ -12,6 +12,21 @@
 
 ActiveRecord::Schema.define(version: 20170917134804) do
 
+  create_table "jobs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "work_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_jobs_on_user_id", using: :btree
+    t.index ["work_id"], name: "index_jobs_on_work_id", using: :btree
+  end
+
+  create_table "stores", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -41,4 +56,16 @@ ActiveRecord::Schema.define(version: 20170917134804) do
     t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
 
+  create_table "works", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "start_datetime"
+    t.datetime "end_datetime"
+    t.integer  "store_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["store_id"], name: "index_works_on_store_id", using: :btree
+  end
+
+  add_foreign_key "jobs", "users"
+  add_foreign_key "jobs", "works"
+  add_foreign_key "works", "stores"
 end

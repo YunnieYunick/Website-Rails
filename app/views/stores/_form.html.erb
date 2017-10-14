@@ -1,0 +1,23 @@
+<%= form_for(store) do |f| %>
+  <% if store.errors.any? %>
+    <div id="error_explanation">
+      <div class="h2"><%= pluralize(store.errors.count, "error") %> prohibited this store from being saved:</div>
+      <ul>
+      <% store.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row form-inline">
+    <div class="col-2"><%= f.label :name %></div>
+    <div class="col-10"><%= f.text_field :name, class: "form-control" %></div>
+  </div>
+
+  <div class="form-group row actions">
+    <div class="col-12">
+      <%= link_to '戻る', stores_path, class: "btn btn-primary" %> <%= f.submit "登録する", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

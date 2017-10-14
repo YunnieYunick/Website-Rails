@@ -1,0 +1,41 @@
+<%= form_for(work) do |f| %>
+  <% if work.errors.any? %>
+    <div id="error_explanation">
+      <strong><%= pluralize(work.errors.count, "error") %> prohibited this work from being saved:</strong>
+      <ul>
+      <% work.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="h3">
+    <%= params[:date_y] %> / <%= params[:date_m] %> /<%= params[:date_d] %>
+    <%= f.hidden_field :date_y, value: params[:date_y] %>
+    <%= f.hidden_field :date_m, value: params[:date_m] %>
+    <%= f.hidden_field :date_d, value: params[:date_d] %>
+  </div>
+
+  <div class="form-group row form-inline">
+    <div class="col-2"><%= f.label :store_id %></div>
+    <div class="col-2"><%= f.select :store_id, Store.all.map{|t| [t.name, t.id]}, {}, { class: "form-control" } %></div>
+    <div class="col-2"><%= link_to '新規追加', new_store_path, class: "btn btn-primary" %></div>
+  </div>
+
+  <div class="form-group row form-inline">
+    <div class="col-2"><%= f.label :start_datetime %></div>
+    <div class="col-10"><%= f.time_select :start_datetime, { :minute_step => 30 }, { class: "form-control" } %></div>
+  </div>
+
+  <div class="form-group row form-inline">
+    <div class="col-2"><%= f.label :end_datetime %></div>
+    <div class="col-10"><%= f.time_select :end_datetime, { :minute_step => 30 }, { class: "form-control" } %></div>
+  </div>
+
+  <div class="form-group row actions">
+    <div class="col-12">
+      <%= link_to '戻る', works_path, class: "btn btn-light" %> <%= f.submit "登録する", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

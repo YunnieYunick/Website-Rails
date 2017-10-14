@@ -1,0 +1,8 @@
+<% if(job.user.avatar_file_name).present? %>
+  <%= image_tag(job.user.avatar.url(:thumb), :size => "24x24", :alt => job.user.username, :class => "user_thumb") %>
+<% else %>
+  <%= job.user.username %>
+<% end %>
+<%= job.work.start_datetime.strftime('%H:%M') %>
+-
+<%= job.work.end_datetime.strftime('%H:%M') %>

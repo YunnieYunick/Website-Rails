@@ -1,0 +1,15 @@
+<% provide :title ,"Works" %>
+<% provide :works_active ,"active" %>
+
+<div class="container">
+  <div class="h5">Works <%= current_staff_user.username %></div>
+  <p class="h3"><%= @work.start_datetime.strftime('%Y/%m/%d') %></p>
+  <ul>
+    <li>
+      <%= @work.jobs.first.user.username %>:<%= @work.start_datetime.strftime('%H:%M') %> - <%= @work.end_datetime.strftime('%H:%M') %>
+      <%= link_to '編集', edit_work_path(date_y: @work.start_datetime.strftime('%Y'), date_m: @work.start_datetime.strftime('%m'), date_d: @work.start_datetime.strftime('%d')), class: "btn btn-primary" %>
+      <%= link_to '削除', @work, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning" %>
+    </li>
+  </ul>
+  <%= link_to '戻る', works_path , class: "btn btn-primary" %>
+</div>

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  resources :stores
+  resources :works
+
   namespace :staff do
     devise_for :users, controllers: {
     sessions: 'staff/users/sessions',

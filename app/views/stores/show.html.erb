@@ -1,0 +1,10 @@
+<% provide :title ,"Stores" %>
+<% provide :stores_active ,"active" %>
+
+<div class="container">
+  <div class="h5">Stores</div>
+  <p><%= @store.name %></p>
+  <%= link_to '戻る', stores_path, class: "btn btn-primary" %>
+  <%= link_to '編集', edit_store_path(@store), class: "btn btn-primary" %>
+</div>
+

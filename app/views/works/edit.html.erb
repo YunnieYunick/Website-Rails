@@ -1,0 +1,7 @@
+<% provide :title ,"Works" %>
+<% provide :works_active ,"active" %>
+
+<div class="container">
+  <div class="h5">Worksの編集 <%= current_staff_user.username %></div>
+  <%= render 'form', work: @work %>
+</div>
