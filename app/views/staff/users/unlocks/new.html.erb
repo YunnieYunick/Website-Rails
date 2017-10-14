@@ -1,0 +1,21 @@
+<% provide :title ,"アカウントロックの解除申請" %>
+<% provide :user_active ,"active" %>
+
+<div class="container">
+  <h1>アカウントロックの解除申請</h1>
+
+  <%= form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class="actions">
+      <p><%= f.submit "申請する", class: "btn btn-primary" %></p>
+    </div>
+  <% end %>
+
+  <%= render "staff/users/shared/links" %>
+</div>
