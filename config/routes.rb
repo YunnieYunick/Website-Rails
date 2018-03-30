@@ -3,6 +3,15 @@ Rails.application.routes.draw do
   resources :stores
   resources :works
 
+  namespace :account do
+    devise_for :members, controllers: {
+    sessions: 'account/members/sessions',
+    registrations: 'account/members/registrations',
+    confirmations: 'account/members/confirmations',
+    passwords: 'account/members/passwords'
+    }
+  end
+
   namespace :staff do
     devise_for :users, controllers: {
     sessions: 'staff/users/sessions',

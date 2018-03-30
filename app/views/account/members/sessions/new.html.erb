@@ -1,0 +1,56 @@
+<% provide :title ,"ログイン" %>
+<% provide :member_active ,"active" %>
+
+<div class="container">
+  <h1>ログイン</h1>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div class="field form-group">
+      <%= f.label :username %><br />
+      <%= f.text_field :username, autofocus: true, class: "form-control" %>
+    </div>
+    
+    <div class="field form-group">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :sex %><br />
+      <%= f.select :sex, [["男性", "man"], ["女性", "woman"]], {}, { class: "form-control" } %>
+    </div>
+
+    <div class="field form-group form-inline">
+      <%= f.label :birthday %><br />
+      <%= f.date_select :birthday, { start_year: 1930, end_year: (Time.now.year - 18), default: Date.new(1978, 1, 1)},{class: "form-control" } %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone, autofocus: true, class: "form-control" %>
+    </div>
+
+    <div class="field form-group">
+      <%= f.label :address %><br />
+      <%= f.text_field :address, autofocus: true, class: "form-control" %>
+    </div>
+
+    <% if devise_mapping.rememberable? -%>
+      <div class="field form-group">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end -%>
+
+    <div class="actions">
+      <p><%= f.submit "ログイン", class: "btn btn-primary" %></p>
+    </div>
+  <% end %>
+
+  <%= render "account/members/shared/links" %>
+</div>

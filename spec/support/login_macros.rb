@@ -26,4 +26,23 @@ module LoginMacros
     fill_in 'パスワード', with: 'secret'
     click_button 'ログイン'
   end
+
+  def signin_member(member)
+    member = create(member)
+    login member
+    member = Member.first
+    member.confirm
+  end
+
+  def login_member(member)
+    visit new_account_member_session_path
+    within 'h1' do
+      expect(page).to have_content 'ログイン'
+    end
+
+    fill_in '名前', with: 'Mick'
+    fill_in 'メールアドレス', with: 'mick@mick.com'
+    fill_in 'パスワード', with: 'secret'
+    click_button 'ログイン'
+  end
 end

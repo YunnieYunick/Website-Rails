@@ -1,0 +1,58 @@
+<% provide :title ,"新規会員登録" %>
+<% provide :member_active ,"active" %>
+
+<div class="container">
+  <h1>新規会員登録</h1>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field form-group">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true, class: "form-control" %>
+  </div>
+  
+  <div class="field form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> 文字以上で入力してください)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :sex %><br />
+    <%= f.select :sex, [["男性", "man"], ["女性", "woman"]], {}, { class: "form-control" } %>
+  </div>
+
+  <div class="field form-group form-inline">
+    <%= f.label :birthday %><br />
+    <%= f.date_select :birthday, { start_year: 1930, end_year: (Time.now.year - 18), default: Date.new(1978, 1, 1)},{class: "form-control" } %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autofocus: true, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <p><%= f.submit "新規会員登録", class: "btn btn-primary" %></p>
+  </div>
+<% end %>
+<%= render "account/members/shared/links" %>
+</div>

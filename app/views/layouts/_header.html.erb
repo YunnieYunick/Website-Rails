@@ -10,6 +10,18 @@
           <%= link_to "Site Nameについて", pages_about_path, class: "nav-link #{yield(:about_active)}" %>
         </li>
       </ul>
+      <% if account_member_signed_in? %>
+      <div class="nav-right">
+        <%= link_to 'マイページ', edit_account_member_registration_path, class: "nav-link #{yield(:member_active)}" %>
+      </div>
+      <div class="nav-right">
+        <%= link_to 'ログアウト', destroy_account_member_session_path, method: :delete, class: "nav-link" %>
+      </div>
+      <% else %>
+      <div class="nav-right">
+        <%= link_to 'ログイン', new_account_member_session_path, class: "nav-link #{yield(:member_active)}" %>
+      </div>
+      <% end %>
       <% if staff_user_signed_in? %>
       <div class="nav-right">
         <%= link_to 'アカウント', edit_staff_user_registration_path, class: "nav-link #{yield(:user_active)}" %>
