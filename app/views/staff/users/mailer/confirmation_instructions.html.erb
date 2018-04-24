@@ -1,0 +1,5 @@
+<p>ようこそ <%= @email %>さん!</p>
+<p>現在、<%= @email %>さんは、仮登録中です。</p>
+<p>下記のURLより本登録を行ってください。<br></p>
+<p>【本登録用URL：】</p>
+<p><%= link_to confirmation_url(@resource, confirmation_token: @token), confirmation_url(@resource, confirmation_token: @token) %></p>
