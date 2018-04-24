@@ -1,4 +1,6 @@
 class Staff::Users::ConfirmationsController < Devise::ConfirmationsController
+  include Dashboards
+  before_action :get_dashboard
   # GET /resource/confirmation/new
   # def new
   #   super

@@ -1,4 +1,6 @@
 class Staff::Users::UnlocksController < Devise::UnlocksController
+  include Dashboards
+  before_action :get_dashboard
   # GET /resource/unlock/new
   # def new
   #   super

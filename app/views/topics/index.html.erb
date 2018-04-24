@@ -1,0 +1,30 @@
+<% provide :title ,"Topics一覧" %>
+<% provide :dashboards_active ,"active" %>
+
+<div class="container">
+  <div class="h1">Topics　<%= link_to "新規追加", new_topic_path, class: 'btn btn-primary' %></div>
+  <div class="row">
+    <div class="col-sm-12">
+      <table class="table table-stripe table-responsive">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @topics.each do |topic| %>
+            <tr>
+              <td><%= link_to topic.title, topic %></td>
+              <td>
+                <%= link_to '編集', edit_topic_path(topic), class: 'btn btn-primary' %>
+                <%= link_to '削除', topic, method: :delete, data: { confirm: "#{topic.title}を削除します。よろしいですか？" }, class: 'btn btn-warning' %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

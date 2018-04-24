@@ -1,0 +1,33 @@
+<%= form_for(dashboard) do |f| %>
+  <% if dashboard.errors.any? %>
+    <div id="error_explanation">
+      <div class="h2"><%= pluralize(dashboard.errors.count, "error") %> prohibited this dashboard from being saved:</div>
+      <ul>
+      <% dashboard.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group row form-inline">
+    <div class="col-2"><%= f.label :site_name, "サイト名" %></div>
+    <div class="col-10"><%= f.text_field :site_name, class: "form-control" %></div>
+  </div>
+
+  <div class="form-group row form-inline">
+    <div class="col-2"><%= f.label :site_description, "サイトの説明" %></div>
+    <div class="col-10"><%= f.text_area :site_description, class: "form-control" %></div>
+  </div>
+
+  <div class="form-group row form-inline">
+    <div class="col-2"><%= f.label :about_text, "サイトについて" %></div>
+    <div class="col-10"><%= f.text_area :about_text, class: "form-control" %></div>
+  </div>
+
+  <div class="form-group row actions">
+    <div class="col-12">
+      <%= link_to '戻る', dashboards_path, class: "btn btn-primary" %> <%= f.submit "登録する", class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

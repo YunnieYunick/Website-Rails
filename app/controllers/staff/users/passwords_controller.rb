@@ -1,4 +1,6 @@
 class Staff::Users::PasswordsController < Devise::PasswordsController
+  include Dashboards
+  before_action :get_dashboard
   # GET /resource/password/new
   # def new
   #   super

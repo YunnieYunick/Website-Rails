@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) %> | Site Name</title>
+    <title><%= yield(:title) %> | <%= @dashboard.site_name if @dashboard.present? %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 

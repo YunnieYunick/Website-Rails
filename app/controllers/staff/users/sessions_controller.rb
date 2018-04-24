@@ -1,4 +1,6 @@
 class Staff::Users::SessionsController < Devise::SessionsController
+  include Dashboards
+  before_action :get_dashboard
 # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
