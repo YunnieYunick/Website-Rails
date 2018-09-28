@@ -13,6 +13,20 @@
           <%= link_to "お問い合わせ", contacts_index_path, class: "nav-link #{yield(:contact_active)}" %>
         </li>
       </ul>
+      <% if staff_user_signed_in? %>
+      <div class="nav-right">
+        <%= link_to 'アカウント', edit_staff_user_registration_path, class: "nav-link #{yield(:user_active)}" %>
+      </div>
+      <div class="nav-right">
+        <%= link_to 'ログアウト', destroy_staff_user_session_path, method: :delete, class: "nav-link" %>
+      </div>
+      <% end %>
     </div>
   </nav>
+  <% flash.each do |name, msg| %>
+  <div id='alertBox' class="alert alert-<%= name == 'notice' ? 'success' : 'danger' %>">
+    <a class='close' data-dismiss='alert'>x</a>
+    <%= msg %>
+  </div>
+<% end %>
 </header>
