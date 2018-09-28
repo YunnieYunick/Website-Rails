@@ -3,17 +3,22 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="/">Site Name</a>
+    <a class="navbar-brand" href="/"><%= @dashboard.present? ? @dashboard.site_name : "Home" %></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to "Site Nameについて", pages_about_path, class: "nav-link #{yield(:about_active)}" %>
+          <%= link_to(pages_about_path, class: "nav-link #{yield(:about_active)}") do %>
+              <%= @dashboard.present? ? "#{@dashboard.site_name}について" : "About Us" %>
+          <% end %>
         </li>
         <li class="nav-item">
           <%= link_to "お問い合わせ", contacts_index_path, class: "nav-link #{yield(:contact_active)}" %>
         </li>
       </ul>
       <% if staff_user_signed_in? %>
+      <div class="nav-right">
+        <%= link_to 'ダッシュボード', dashboards_path, class: "nav-link #{yield(:dashboards_active)}" %>
+      </div>
       <div class="nav-right">
         <%= link_to 'アカウント', edit_staff_user_registration_path, class: "nav-link #{yield(:user_active)}" %>
       </div>

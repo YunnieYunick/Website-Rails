@@ -1,0 +1,9 @@
+<% provide :title ,"Dashboards" %>
+<% provide :dasboards_active ,"active" %>
+
+<div class="container">
+  <div class="h5">Dashboards</div>
+  <p><%= @dashboard.site_name %></p>
+  <%= link_to '戻る', dashboards_path, class: "btn btn-primary" %>
+  <%= link_to '編集', edit_dashboard_path(@dashboard), class: "btn btn-primary" %>
+</div>

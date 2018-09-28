@@ -1,9 +1,10 @@
-<% provide :title ,"Site Nameについて" %>
+<% provide :title , @dashboard.present? ? "#{@dashboard.site_name}について" : "About Us" %>
 <% provide :about_active ,"active" %>
 
   <div class="container">
-    <div class="h1">Site Nameについて</div>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, fugiat corporis reiciendis velit mollitia, expedita consequuntur! Optio asperiores amet accusantium magni, qui quasi aspernatur placeat minus quis ratione, autem nulla.</p>
+    <% if @dashboard.present? %>
+      <div class="h5"><%= @dashboard.site_name %>について</div>
+      <p><%= @dashboard.about_text %></p>
+    <% end %>
 
   </div>

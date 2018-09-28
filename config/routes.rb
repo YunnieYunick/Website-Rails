@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     passwords: 'staff/users/passwords'
     }
   end
+
+  resources :topics
+  resources :dashboards
   
   root 'pages#index'
   get 'about' => 'pages#about', as: 'pages_about'

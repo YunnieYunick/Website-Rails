@@ -1,5 +1,5 @@
 <footer class="footer">
   <div class="container">
-    <span class="text-muted">&copy; <%= Date.today.year %> Site Name</span>
+    <span class="text-muted">&copy; <%= Date.today.year %> <%= @dashboard.site_name if @dashboard.present? %></span>
   </div>
 </footer>

@@ -1,4 +1,6 @@
 class Staff::Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  include Dashboards
+  before_action :get_dashboard
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 
