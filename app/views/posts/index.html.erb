@@ -1,0 +1,51 @@
+<% provide(:title, '投稿一覧') %>
+<% provide(:posts_active, 'active') %>
+
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="row">
+    <%= render partial:"dashboards/sidebar" %>
+    <div class="col-sm-10 blog-main">
+      <p>
+        投稿一覧　<%= link_to "新規追加", new_post_path, class: 'btn btn-primary' %>
+        <%= link_to_unless I18n.locale == :en, 'English', locale: 'en' %>
+        <%= link_to_unless I18n.locale == :ja, 'Japanese', locale: 'ja' %>
+      </p>
+      <table class="table table-stripe table-responsive">
+        <tr>
+          <th>タイトル</th>
+          <th>作成者</th>
+          <th>カテゴリー</th>
+          <th>タグ</th>
+          <th>日時</th>
+        </tr>
+        <% @posts.each do |post| %>
+        <tr>
+          <td><%= link_to post.title, edit_post_path(post) %></td>
+          <td><%= post.user.username %></td>
+          <td>
+            <% if post.category_id.present? %>
+              <%=  link_to post.category.name, edit_category_path(post.category.id) %>
+            <% end %>
+          </td>
+          <td>
+            <% if post.tag_list.present? %>
+              <%= raw post.tag.map(&:name).map { |t| link_to t, edit_tag_path(t)}.join(', ') %>
+            <% end %>
+          </td>
+          <td>
+            <% if post.published? %>
+              公開中<br><%= post.published_at %>
+            <% else %>
+              下書き<br><%= post.created_at %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+      <nav class="blog-pagination">
+        <%= paginate @posts %>
+      </nav>
+    </div>
+  </div>
+</div>

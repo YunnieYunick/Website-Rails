@@ -1,0 +1,47 @@
+<div class="sidebar-module sidebar-module-inset">
+  <div class="h3">Search</div>
+  <%= form_tag(blog_path, :method => "get", class: "form-inline") do %>
+    <div class="input-group mb-3 mr-sm-2">
+      <%= text_field_tag :search, params[:search], class: "form-control" %>
+      <%= submit_tag 'Search', :name => nil, class: 'btn btn-outline-primary' %>
+    </div>
+  <% end %>
+</div>
+
+<div class="sidebar-module">
+  <div class="h3">Category</div>
+  <ol class="list-unstyled category-list">
+    <% for category in @categories do %>
+      <li><%= link_to category.name, category_path(category.slug) %></li>
+    <% end %>
+  </ol>
+</div>
+
+<div class="sidebar-module">
+  <div class="h3">Tag</div>
+  <ol class="list-unstyled tag-list">
+    <% for tag in @tags do %>
+      <li><%= link_to tag.name, tag_path(tag.slug) %></li>
+    <% end %>
+  </ol>
+</div>
+
+<div class="sidebar-module">
+  <div class="h3">Recent Posts</div>
+  <ol class="list-unstyled recentposts-list">
+    <% for recent_post in @recent_posts do %>
+      <li><%= link_to recent_post.title, blog_show_path(recent_post.slug) %></li>
+    <% end %>
+  </ol>
+</div>
+
+<div class="sidebar-module">
+  <div class="h3">Archives</div>
+  <ol class="list-unstyled archives-list">
+    <% for archive_post in @archive_posts do %>
+      <%= link_to blog_archives_path(archive_post[0]) do %>
+      <li><%= archive_post[0] %> (<%= archive_post[1].count %>)</li>
+      <% end %>
+    <% end %>
+  </ol>
+</div>

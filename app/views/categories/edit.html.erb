@@ -1,0 +1,12 @@
+<% provide(:title, 'カテゴリーの編集') %>
+<% provide(:categories_active, 'active') %>
+
+<div class="container">
+  <div class="row">
+    <%= render partial:"dashboards/sidebar" %>
+    <div class="col-sm-10 blog-main">
+      <p class="">カテゴリーの編集　<%= link_to "カテゴリー追加", new_category_path, class: 'btn btn-secondary' %></p>
+      <%= render 'form', category: @category %>
+    </div>
+  </div>
+</div>

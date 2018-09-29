@@ -3,7 +3,7 @@
 
 <div class="container">
   <div class="h1">
-    <span class="h5">Dashboards</span>
+    <span class="h5"><%= link_to @username, edit_staff_user_registration_path %></span>
     <span class="h5">
       <% if @dashboard.present? %>
         <%= link_to '設定', edit_dashboard_path(@dashboard), class: "btn btn-primary edit" %>
@@ -13,6 +13,9 @@
     </span>
     <span class="h5">
       <%= link_to 'News', topics_path, class: "btn btn-primary" %>
+    </span>
+    <span class="h5">
+      <%= link_to 'Blog', posts_path, class: "btn btn-primary" %>
     </span>
   </div>
 </div>

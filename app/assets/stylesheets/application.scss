@@ -42,3 +42,31 @@ body > .container {
     color: $base_color;
   }
 }
+
+.mt-4 {
+  width: 100%;
+  .img-responsive {
+    width: 100%;
+  }
+}
+
+.blog-post {
+  margin-bottom: 4rem;
+  .blog-sns {
+    .blog-sns-ul {
+      margin: 1em auto;
+      padding: 0;
+      overflow: hidden;
+      .blog-sns-li {
+        float: left;
+        list-style: none;
+      }
+    }
+  }
+}
+
+.sidebar {
+  margin-bottom: $base_margin * 4;
+  border-right: 1px solid $main_color;
+  background: $base_color;
+}

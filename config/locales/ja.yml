@@ -19,5 +19,14 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+ja:
+  hello: "こんにちは"
+  about_title: "About Us"
+  about_text: "アバウト"
+  blog:
+    title: "Site Name Blog"
+    desc: "Blogの説明文をいれます"
+    all_article: "すべての記事"
+    archives: "アーカイブ"
+    read_more: "続きを読む"
+    back: "戻る"

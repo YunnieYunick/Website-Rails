@@ -1,0 +1,31 @@
+<% provide(:title, 'カテゴリーリスト') %>
+<% provide(:categories_active, 'active') %>
+
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="row">
+    <%= render partial:"dashboards/sidebar" %>
+    <div class="col-sm-10 blog-main">
+      <p>カテゴリーリスト　<%= link_to '新規追加', new_category_path, class: 'btn btn-primary' %></p>
+      <table class="table table-stripe table-responsive">
+        <tr>
+          <th>名前</th>
+          <th>slug</th>
+          <th>カウント</th>
+          <th>日時</th>
+        </tr>
+        <% @categories.each do |category| %>
+          <tr>
+          　<td><%= link_to category.name, edit_category_path(category) %></td>
+            <td><%= category.slug %></td>
+            <td><%= category.posts.count %></td>
+            <td><%= category.created_at %></td>
+          </tr>
+        <% end %>
+      </table>
+      <nav class="blog-pagination">
+        <%= paginate @categories %>
+      </nav>
+    </div>
+  </div>
+</div>

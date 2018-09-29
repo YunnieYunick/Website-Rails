@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :posts
+  
   # Include default devise modules. Others available are:
   # :lockable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :timeoutable,

@@ -1,0 +1,32 @@
+<%= form_for(tag) do |f| %>
+  <% if tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+      <ul>
+      <% tag.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="form-group">
+        <%= f.label :name, "名前" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :slug, "slug" %>
+        <%= f.text_field :slug, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit '保存', class: 'btn btn-primary' %>
+        <% if tag.persisted? %>
+          <%= link_to '削除', tag, method: :delete, data: { confirm: "#{tag.name}を削除します。よろしいですか?" }, class: 'btn float-right' %>
+        <% else %>
+          <%= link_to '戻る', tags_path, class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

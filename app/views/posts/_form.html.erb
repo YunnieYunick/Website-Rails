@@ -1,0 +1,66 @@
+<%= form_for(post) do |f| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="form-group">
+        <%= f.label :title, "タイトル" %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :body, "記事本文" %>
+        <%= f.text_area :body, :size => "20x10", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :slug, "スラッグ" %>
+        <%= f.text_field :slug, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="form-group actions">
+        <div class="form-group">
+          <%= f.submit '下書きとして保存', class: 'btn btn-primary' %>
+          <% if post.persisted? %>
+              <%= link_to 'プレビュー', post, {:target => '_blank', class: 'btn btn-primary'} %>
+          <% end %>
+        </div>
+        <div class="form-group">
+          <%= f.label :published_at, "公開日時" %>
+          <%= f.text_field :published_at, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit '公開する', name: 'published', class: 'btn btn-success' %>
+          <% if post.persisted? %>
+            <%= link_to '削除', post_path(post) , {method: :delete, data: {confirm: "削除してよろしいですか？"}, class: 'float-right btn'} %>
+          <% end %>
+        </div>
+      </div>
+      <div class="form-group option">
+        <%= f.label :category_id, "カテゴリー" %>
+        <%= f.collection_select :category_id, Category.all, :id , :name ,{:prompt => 'カテゴリーを選択'}, {:class => 'form-control'} %>
+      </div>
+      <div class="form-group option">
+        <%= f.label :Tag, "タグ" %>
+        <%= f.text_field :tag_list, class: "form-control" %>
+        <% Tag.all.each do |t| %>
+          <span><%= t.name %></span>
+        <% end %>
+      </div>
+      <div class="form-group option">
+        <div><%= f.label :image, "アイキャッチ画像を設定" %></div>
+        <%= f.file_field :image, class: "form-control" %>
+        <% if post.image.present? %>
+          <p class="text-center"><img class="img-fluid" src="<%= post.image %>" alt=""></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

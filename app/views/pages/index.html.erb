@@ -20,4 +20,22 @@
     </div>
     <% end %>
   </div>
+
+  <div class="container mt-4">
+    <% if @recent_posts.present? %>
+    <p class="h5">Recent Posts</p>
+    <div class="row">
+      <% @recent_posts.each do |recent_post| %>
+      <div class="col-md-4">
+        <h2><%= recent_post.title %></h2>
+        <% if recent_post.image.present? %>
+          <img class="img-responsive" src="<%= recent_post.image %>" alt="">
+        <% end %>
+        <p><%= truncate(strip_tags(markdown(recent_post.body)), length: 90) %></p>
+        <p><%= link_to raw('View details &raquo;'), blog_show_path(recent_post.slug), class: 'btn btn-secondary' %></p>
+      </div>
+      <% end %>      
+    </div>
+    <% end %>
+  </div>
 </div>

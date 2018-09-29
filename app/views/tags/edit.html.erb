@@ -1,0 +1,12 @@
+<% provide(:title, 'タグの編集') %>
+<% provide(:tags_active, 'active') %>
+
+<div class="container">
+  <div class="row">
+    <%= render partial:"dashboards/sidebar" %>
+    <div class="col-sm-10 blog-main">
+      <p class="">タグの編集　<%= link_to "タグ追加", new_tag_path, class: 'btn btn-secondary' %></p>
+      <%= render 'form', tag: @tag %>
+    </div>
+  </div>
+</div>

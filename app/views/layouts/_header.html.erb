@@ -8,8 +8,11 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <%= link_to(pages_about_path, class: "nav-link #{yield(:about_active)}") do %>
-              <%= @dashboard.present? ? "#{@dashboard.site_name}について" : "About Us" %>
+              <%= @dashboard.present? ? "#{@dashboard.site_name}について" : t('about_title') %>
           <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Blog", blog_path, class: "nav-link #{yield(:blog_active)}" %>
         </li>
         <li class="nav-item">
           <%= link_to "お問い合わせ", contacts_index_path, class: "nav-link #{yield(:contact_active)}" %>
@@ -18,9 +21,6 @@
       <% if staff_user_signed_in? %>
       <div class="nav-right">
         <%= link_to 'ダッシュボード', dashboards_path, class: "nav-link #{yield(:dashboards_active)}" %>
-      </div>
-      <div class="nav-right">
-        <%= link_to 'アカウント', edit_staff_user_registration_path, class: "nav-link #{yield(:user_active)}" %>
       </div>
       <div class="nav-right">
         <%= link_to 'ログアウト', destroy_staff_user_session_path, method: :delete, class: "nav-link" %>

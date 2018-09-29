@@ -75,4 +75,20 @@ feature 'Page management' do
 
     expect(page).to have_content 'About text'
   end
+
+  scenario "access index without create blog" do
+    visit root_path
+
+    expect(page).to_not have_content 'Recent Posts'
+  end
+
+  scenario "access index with create blog" do
+    signin(:user)
+    login(:user)
+    create(:post)
+
+    visit root_path
+
+    expect(page).to have_content 'Recent Posts'
+  end
 end

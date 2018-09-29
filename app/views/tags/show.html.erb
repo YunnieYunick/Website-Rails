@@ -1,0 +1,35 @@
+<% provide(:title, @tag.name ) %>
+<% provide(:blog_active, 'active') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 blog-main">
+      <% @posts.each do |post| %>
+        <div class="blog-post">
+          <h2 class="blog-post-title"><%= link_to post.title, blog_show_path(post) %></h2>
+          <div class="blog-post-meta"><%= post.display_day_published %> by <%= post.user.username %></div>
+          <div class="blog-post-meta">
+            <% if post.category_id.present? %>
+              <%=  link_to post.category.name, category_path(:id => post.category.slug) %>
+            <% end %>
+            <% if post.tag_list.present? %>
+              <%= raw post.tag.map { |t| link_to t.name, tag_path(t)}.join(', ') %>
+            <% end %>
+          </div>
+          <hr>
+          <% if post.image.present? %>
+            <img class="img-responsive" src="<%= post.image %>" alt="">
+          <% end %>
+          <p><%= truncate(strip_tags(markdown(post.body)), length: 10) %></p>
+          <%= link_to '続きを読む', blog_show_path(post), class: "btn btn-outline-primary" %>
+        </div>
+      <% end %>
+      <nav class="blog-pagination">
+        <%= paginate @posts %>
+      </nav>
+    </div>
+    <div class="col-sm-3 offset-sm-1 blog-sidebar">
+      <%= render partial:"blog/blog-side" %>
+    </div>
+  </div>
+</div>

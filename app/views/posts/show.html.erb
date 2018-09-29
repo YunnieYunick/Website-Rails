@@ -1,0 +1,33 @@
+<% provide(:title, @post.title) %>
+<% provide(:post_active, 'active') %>
+
+<div class="container">
+  <p><%= link_to '編集', edit_post_path(@post), class: 'btn btn-warning' %>  <%= link_to '削除', post_path(@post), class: 'btn btn-danger' , method: :delete, data: {confirm: "削除してよろしいですか？"} %></p>
+  <div class="row">
+    <div class="col-sm-8 blog-main">
+      <div class="blog-post">
+        <h2 class="blog-post-title"><%= @post.title %></h2>
+        <div class="blog-post-meta"><%= @post.display_day_published %> by <%= @username %></div>
+        <div class="blog-post-meta">
+          <% if @post.category_id.present? %>
+            <%=  link_to @post.category.name, category_path(:id => @post.category.slug) %>
+          <% end %>
+          <% if @post.tag_list.present? %>
+            <%= raw @post.tag.map { |t| link_to t.name, tag_path(t)}.join(', ') %>
+          <% end %>
+        </div>
+        <hr>
+        <% if @post.image.present? %>
+          <img class="img-responsive" src="<%= @post.image %>" alt="">
+        <% end %>
+        <%= markdown(@post.body) %>
+        <div class="blog-pagination">
+          <%= link_to 'Back', posts_path, class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3 offset-sm-1 blog-sidebar">
+      <%= render partial:"blog/blog-side" %>
+    </div>
+  </div>
+</div>

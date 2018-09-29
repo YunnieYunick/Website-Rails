@@ -9,6 +9,7 @@ class DashboardsController < ApplicationController
       @dashboard = Dashboard.first
     end
     @topics = Topic.all
+    @username = current_staff_user.username
   end
 
   def show

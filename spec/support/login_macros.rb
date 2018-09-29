@@ -7,7 +7,7 @@ module LoginMacros
     user.confirm
     sign_in user
   end
-  
+
   def signin(user)
     user = create(user)
     login user

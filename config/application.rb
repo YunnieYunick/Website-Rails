@@ -24,6 +24,7 @@ module Website
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
     
+    config.i18n.fallbacks = true
     config.i18n.default_locale = :ja
   end
 end

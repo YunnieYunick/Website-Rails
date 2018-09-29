@@ -21,3 +21,12 @@
 
 en:
   hello: "Hello world"
+  about_title: "About Us"
+  about_text: "about"
+  blog:
+    title: "Site Name Blog"
+    desc: "Blog description"
+    all_article: "All Article"
+    archives: "Archives"
+    read_more: "More"
+    back: "Back"

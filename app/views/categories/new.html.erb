@@ -1,0 +1,12 @@
+<% provide(:title, 'カテゴリーを追加') %>
+<% provide(:categories_active, 'active') %>
+
+<div class="container">
+  <div class="row">
+    <%= render partial:"dashboards/sidebar" %>
+    <div class="col-sm-10 blog-main">
+      <p>カテゴリーを追加</p>
+      <%= render 'form', category: @category %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<% provide(:title, '投稿の編集') %>
+<% provide(:posts_active, 'active') %>
+
+<div class="container">
+  <div class="row">
+    <%= render partial:"dashboards/sidebar" %>
+    <div class="col-sm-10 blog-main">
+      <p class="">投稿の編集　<%= link_to "新規追加", new_post_path, class: 'btn btn-secondary' %></p>
+      <%= render 'form', post: @post %>
+    </div>
+  </div>
+</div>

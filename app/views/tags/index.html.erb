@@ -1,0 +1,31 @@
+<% provide(:title, 'タグリスト') %>
+<% provide(:tags_active, 'active') %>
+
+<div class="container">
+  <p id="notice"><%= notice %></p>
+  <div class="row">
+    <%= render partial:"dashboards/sidebar" %>
+    <div class="col-sm-10 blog-main">
+      <p>タグリスト　<%= link_to '新規追加', new_tag_path, class: 'btn btn-primary' %></p>
+      <table class="table table-stripe table-responsive">
+        <tr>
+          <th>名前</th>
+          <th>slug</th>
+          <th>カウント</th>
+          <th>日時</th>
+        </tr>
+        <% @tags.each do |tag| %>
+          <tr>
+            <td><%= link_to tag.name, edit_tag_path(tag) %></td>
+            <td><%= tag.slug %></td>
+            <td><%= tag.post.count %></td>
+          　<td><%= tag.created_at %></td>
+          </tr>
+        <% end %>
+      </table>
+      <nav class="blog-pagination">
+        <%= paginate @tags %>
+      </nav>
+    </div>
+  </div>
+</div>

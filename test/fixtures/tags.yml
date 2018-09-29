@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+TestTag:
+  name: test_tag
+
+two:
+  name: test_tag2

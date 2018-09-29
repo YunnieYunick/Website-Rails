@@ -1,0 +1,12 @@
+<% provide(:title, 'タグを追加') %>
+<% provide(:tags_active, 'active') %>
+
+<div class="container">
+  <div class="row">
+    <%= render partial:"dashboards/sidebar" %>
+    <div class="col-sm-10 blog-main">
+      <p>タグを追加</p>
+      <%= render 'form', tag: @tag %>
+    </div>
+  </div>
+</div>

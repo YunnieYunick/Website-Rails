@@ -23,4 +23,14 @@ feature 'Dashboard management' do
       expect(page).to have_css(".edit")
     end
   end
+
+  scenario "show index page with Dashboard" do
+    signin(:user)
+    login(:user)
+
+    create(:dashboard)
+
+    visit dashboards_path
+    expect(page).to have_content "Blog"
+  end
 end

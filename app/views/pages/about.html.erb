@@ -1,4 +1,4 @@
-<% provide :title , @dashboard.present? ? "#{@dashboard.site_name}について" : "About Us" %>
+<% provide :title , @dashboard.present? ? "#{@dashboard.site_name}について" : t('about_title') %>
 <% provide :about_active ,"active" %>
 
   <div class="container">
@@ -6,5 +6,4 @@
       <div class="h5"><%= @dashboard.site_name %>について</div>
       <p><%= @dashboard.about_text %></p>
     <% end %>
-
   </div>

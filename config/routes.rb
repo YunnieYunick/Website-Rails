@@ -16,8 +16,20 @@ Rails.application.routes.draw do
   resources :topics
   resources :dashboards
   
+  resources :tags
+  resources :categories
+  resources :posts do
+    put 'published' => 'posts#published', on: :member, as: :published
+    put 'unpublished' => 'posts#unpublished', on: :member, as: :unpublished
+  end
+
+  get 'blog' => 'blog#index'
+  get 'blog/:id' => 'blog#show', as: 'blog_show'
+  get 'blog/archives/:id' => 'blog#archives', as: 'blog_archives'
+
   root 'pages#index'
   get 'about' => 'pages#about', as: 'pages_about'
+
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

@@ -39,6 +39,10 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
 gem 'devise'
 gem "paperclip"
+gem 'kaminari'
+gem 'redcarpet'
+gem 'globalize', git: 'https://github.com/globalize/globalize'
+gem 'activemodel-serializers-xml'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
